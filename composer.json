@@ -1,0 +1,23 @@
+{
+  "name": "zaco/assets",
+  "description": "ZACO Assets System",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Mahmoud Fouad",
+      "email": "mahmoud.a.fouad2@gmail.com",
+      "homepage": "https://ma-fo.info",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=8.1",
+    "mpdf/mpdf": "^8.2",
+    "phpmailer/phpmailer": "^6.9"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  }
+}

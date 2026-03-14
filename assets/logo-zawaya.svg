@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 260" role="img" aria-labelledby="title desc">
+  <title id="title">Zawaya Albina Engineering Consultancy</title>
+  <desc id="desc">Company logo with abstract geometric mark and English wordmark.</desc>
+  <rect width="1200" height="260" fill="none"/>
+  <g fill="#111827">
+    <rect x="28" y="28" width="148" height="196" rx="18"/>
+    <rect x="76" y="76" width="100" height="148" rx="12" fill="#ffffff" opacity="0.08"/>
+    <rect x="76" y="76" width="100" height="100" rx="12"/>
+    <rect x="128" y="128" width="48" height="96" rx="10" fill="#ffffff" opacity="0.08"/>
+    <rect x="128" y="128" width="48" height="96" rx="10"/>
+    <text x="236" y="138" font-size="106" font-family="Segoe UI, Arial, sans-serif" font-weight="800" letter-spacing="4">ZAWAYA ALBINA</text>
+    <text x="236" y="214" font-size="52" font-family="Segoe UI, Arial, sans-serif" font-weight="700" letter-spacing="5">ENGINEERING CONSULTANCY</text>
+  </g>
+</svg>

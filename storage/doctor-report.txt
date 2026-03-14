@@ -1,0 +1,14 @@
+ZACO Doctor Report
+=================
+Timestamp: 2026-03-09 03:31:53
+Root: C:\Users\mfoua\Desktop\Assets-clean
+
+PHP: NOT FOUND in PATH
+- Install PHP or run on the server where PHP is available.
+
+Static scan (common deprecated patterns)
+--------------------------------------
+Pattern: imagedestroy\(
+- C:\Users\mfoua\Desktop\Assets-clean\app\src\Controllers\AssetsController.php:506  imagedestroy($img);
+- C:\Users\mfoua\Desktop\Assets-clean\app\src\Controllers\CleaningController.php:282  imagedestroy($img);
+

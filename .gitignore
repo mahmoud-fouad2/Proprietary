@@ -1,0 +1,22 @@
+# Local secrets
+config/config.local.php
+
+# Runtime
+storage/logs/
+storage/uploads/
+storage/cleaning_weekly_last_sent.json
+
+# Composer
+/vendor/
+
+# Node
+/node_modules/
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
+# OS
+.DS_Store
+Thumbs.db

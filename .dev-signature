@@ -1,0 +1,23 @@
+{
+  "system": "ZACO Assets Management System",
+  "developer": {
+    "name": "Mahmoud Fouad",
+    "email": "mahmoud.a.fouad2@gmail.com",
+    "portfolio": "https://ma-fo.info",
+    "phone": {
+      "sa": "+966530047640",
+      "eg": "+201116588189"
+    }
+  },
+  "copyright": "Copyright (c) 2024-2026 Mahmoud Fouad. All Rights Reserved.",
+  "license": "Proprietary",
+  "fingerprint": "4d61686d6f75642046756164202d206d612d666f2e696e666f",
+  "build_date": "2026-03-14",
+  "repository": "private",
+  "warranty": "This software is provided AS-IS without any warranties.",
+  "contact": {
+    "primary_email": "mahmoud.a.fouad2@gmail.com",
+    "support_hours": "24/7 on-demand",
+    "timezone": "GMT+3"
+  }
+}

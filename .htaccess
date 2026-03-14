@@ -1,0 +1,29 @@
+Options -Indexes
+
+# Optional (Shared Hosting): provide SMTP secrets via environment variables.
+# If your hosting supports mod_env, you can uncomment the lines below.
+# NOTE: Prefer App Passwords (Gmail) and do NOT commit secrets to git.
+<IfModule mod_env.c>
+    # SetEnv ZACO_MAIL_SMTP_USERNAME "noreplay@zaco.sa"
+    # SetEnv ZACO_MAIL_SMTP_PASSWORD "PASTE_GMAIL_APP_PASSWORD_HERE"
+</IfModule>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# IMPORTANT: if your app folder name is different, update RewriteBase.
+RewriteBase /assets/
+
+# Block direct access to sensitive folders
+RewriteRule ^(app|config|storage|scripts)/ - [F,L]
+
+# Route everything else to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php [L]
+</IfModule>
+
+# Deny access to common sensitive files
+<FilesMatch "(?i)\.(env|ini|log|sql|yml|yaml|md|json)$">
+    Require all denied
+</FilesMatch>

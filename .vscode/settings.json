@@ -1,0 +1,17 @@
+{
+  "powershell.scriptAnalysis.settingsPath": ".vscode/PSScriptAnalyzerSettings.psd1",
+
+  "files.exclude": {
+    "**/node_modules": true
+  },
+  "search.exclude": {
+    "**/node_modules": true
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true
+  },
+
+  "html.validate.html": false,
+  "html.validate.styles": false,
+  "html.validate.scripts": false
+}

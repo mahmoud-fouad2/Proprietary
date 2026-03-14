@@ -1,0 +1,5 @@
+@{
+  Rules = @{
+    PSAvoidAssignmentToAutomaticVariable = @{ Enable = $false }
+  }
+}
