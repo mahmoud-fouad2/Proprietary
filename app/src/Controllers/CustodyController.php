@@ -837,7 +837,9 @@ final class CustodyController extends BaseController
             'description' => trim((string)($_POST['description'] ?? '')) ?: null,
             'serial_number' => trim((string)($_POST['serial_number'] ?? '')) ?: null,
             'date_assigned' => (string)($_POST['date_assigned'] ?? ''),
-            'date_returned' => (string)($_POST['date_returned'] ?? null),
+            'date_returned' => (trim((string)($_POST['date_returned'] ?? '')) !== '')
+                ? trim((string)$_POST['date_returned'])
+                : null,
             'custody_status' => (string)($_POST['custody_status'] ?? 'active'),
             'notes' => trim((string)($_POST['notes'] ?? '')) ?: null,
         ];
