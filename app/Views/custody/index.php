@@ -277,4 +277,4 @@ ob_start();
 <?php
 $content = ob_get_clean();
 $title = 'العُهد';
-require __DIR__ . '/../shell.php';
+echo $content;

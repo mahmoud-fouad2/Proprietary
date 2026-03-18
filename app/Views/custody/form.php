@@ -120,4 +120,4 @@ ob_start();
 <?php
 $content = ob_get_clean();
 $title = ($mode === 'edit') ? 'تعديل عهدة' : 'إضافة عهدة';
-require __DIR__ . '/../shell.php';
+echo $content;
