@@ -232,6 +232,11 @@ final class CustodyController extends BaseController
             $data['org_id'] = null;
         }
 
+        $dateReturned = $data['date_returned'] ?? null;
+        if (is_string($dateReturned) && trim($dateReturned) === '') {
+            $dateReturned = null;
+        }
+
         $stmt = $orgEnabled
             ? $db->prepare('INSERT INTO custody (org_id,employee_id,employee_name,item_name,description,serial_number,attachment_name,attachment_path,date_assigned,date_returned,custody_status,notes,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)')
             : $db->prepare('INSERT INTO custody (employee_id,employee_name,item_name,description,serial_number,attachment_name,attachment_path,date_assigned,date_returned,custody_status,notes,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)');
@@ -246,7 +251,7 @@ final class CustodyController extends BaseController
             $file['name'],
             $file['path'],
             $data['date_assigned'],
-            $data['date_returned'],
+            $dateReturned,
             $data['custody_status'],
             $data['notes'],
             $now,
@@ -260,7 +265,7 @@ final class CustodyController extends BaseController
             $file['name'],
             $file['path'],
             $data['date_assigned'],
-            $data['date_returned'],
+            $dateReturned,
             $data['custody_status'],
             $data['notes'],
             $now,
@@ -392,6 +397,11 @@ final class CustodyController extends BaseController
             $data['org_id'] = null;
         }
 
+        $dateReturned = $data['date_returned'] ?? null;
+        if (is_string($dateReturned) && trim($dateReturned) === '') {
+            $dateReturned = null;
+        }
+
         $stmt = $orgEnabled
             ? $db->prepare('UPDATE custody SET org_id=?,employee_id=?,employee_name=?,item_name=?,description=?,serial_number=?,attachment_name=?,attachment_path=?,date_assigned=?,date_returned=?,custody_status=?,notes=?,updated_at=? WHERE id=? AND deleted_at IS NULL')
             : $db->prepare('UPDATE custody SET employee_id=?,employee_name=?,item_name=?,description=?,serial_number=?,attachment_name=?,attachment_path=?,date_assigned=?,date_returned=?,custody_status=?,notes=?,updated_at=? WHERE id=? AND deleted_at IS NULL');
@@ -406,7 +416,7 @@ final class CustodyController extends BaseController
             $file['name'],
             $file['path'],
             $data['date_assigned'],
-            $data['date_returned'],
+            $dateReturned,
             $data['custody_status'],
             $data['notes'],
             $now,
@@ -420,7 +430,7 @@ final class CustodyController extends BaseController
             $file['name'],
             $file['path'],
             $data['date_assigned'],
-            $data['date_returned'],
+            $dateReturned,
             $data['custody_status'],
             $data['notes'],
             $now,

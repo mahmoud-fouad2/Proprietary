@@ -10,6 +10,14 @@ use Zaco\Core\I18n;
 Flash::fromUrl('custody');
 $flashMessages = Flash::render(I18n::locale());
 
+$locale = I18n::locale();
+$statusBadge = static function (string $status): string {
+  return Status::custodyStatusBadge($status);
+};
+$statusLabel = static function (string $status) use ($locale): string {
+  return Status::custodyStatus($status, $locale);
+};
+
 $pageUrl = static function (int $targetPage) use ($org_id, $employee_id, $q, $status, $view): string {
   $params = [
     'org_id' => (int)($org_id ?? 0),
