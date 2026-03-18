@@ -10,14 +10,6 @@ use Zaco\Core\I18n;
 Flash::fromUrl('custody');
 $flashMessages = Flash::render(I18n::locale());
 
-$locale = I18n::locale();
-$statusBadge = static function (string $status): string {
-  return Status::custodyStatusBadge($status);
-};
-$statusLabel = static function (string $status) use ($locale): string {
-  return Status::custodyStatus($status, $locale);
-};
-
 $pageUrl = static function (int $targetPage) use ($org_id, $employee_id, $q, $status, $view): string {
   $params = [
     'org_id' => (int)($org_id ?? 0),
@@ -144,7 +136,7 @@ ob_start();
                   <div class="card-body p-2">
                     <div class="d-flex justify-content-between gap-2">
                       <div class="fw-semibold text-truncate" title="<?= Http::e((string)($it['item_name'] ?? '')) ?>"><?= Http::e((string)($it['item_name'] ?? '')) ?></div>
-                      <span class="badge <?= Http::e($statusBadge($stRaw)) ?>"><?= Http::e($statusLabel($stRaw)) ?></span>
+                      <span class="badge <?= Http::e(Status::custodyStatusBadge($stRaw)) ?>"><?= Http::e(Status::custodyStatus($stRaw, I18n::locale())) ?></span>
                     </div>
                     <div class="text-muted small">
                       <?= Http::e((string)($it['employee_name'] ?? '')) ?>
@@ -218,8 +210,8 @@ ob_start();
                 <td><?= Http::e((string)$it['date_assigned']) ?></td>
                 <?php $stRaw = (string)($it['custody_status'] ?? ''); ?>
                 <td>
-                  <span class="badge <?= Http::e($statusBadge($stRaw)) ?>">
-                    <?= Http::e($statusLabel($stRaw)) ?>
+                  <span class="badge <?= Http::e(Status::custodyStatusBadge($stRaw)) ?>">
+                    <?= Http::e(Status::custodyStatus($stRaw, I18n::locale())) ?>
                   </span>
                 </td>
                 <td>
