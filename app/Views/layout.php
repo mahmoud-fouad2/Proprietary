@@ -4,6 +4,8 @@ use Zaco\Core\Http;
 use Zaco\Core\I18n;
 use Zaco\Security\Csrf;
 
+$GLOBALS['__layoutRendered'] = true;
+
 $title = $title ?? 'ZACO';
 $content = $content ?? '';
 $user = $user ?? null;

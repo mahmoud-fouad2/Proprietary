@@ -4,6 +4,8 @@ declare(strict_types=1);
 use Zaco\Core\Http;
 use Zaco\Core\I18n;
 
+$GLOBALS['__layoutRendered'] = true;
+
 $title = $title ?? 'ZACO';
 $content = $content ?? '';
 
