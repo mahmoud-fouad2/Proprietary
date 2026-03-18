@@ -178,6 +178,14 @@ html[dir="rtl"] .dropdown-menu-end{
   object-fit: cover;
 }
 
+.zaco-avatar-xs{
+  width: 18px;
+  height: 18px;
+  object-fit: cover;
+  font-size: 11px;
+  line-height: 1;
+}
+
 .zaco-avatar-lg{
   width: 140px;
   height: 140px;

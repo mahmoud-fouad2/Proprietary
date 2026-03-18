@@ -5,6 +5,7 @@ use Zaco\Core\Http;
 use Zaco\Core\Status;
 use Zaco\Core\Flash;
 use Zaco\Core\I18n;
+use Zaco\Core\Avatar;
 
 // Initialize flash messages from URL params
 Flash::fromUrl('custody');
@@ -139,7 +140,14 @@ ob_start();
                       <span class="badge <?= Http::e(Status::custodyStatusBadge($stRaw)) ?>"><?= Http::e(Status::custodyStatus($stRaw, I18n::locale())) ?></span>
                     </div>
                     <div class="text-muted small">
-                      <?= Http::e((string)($it['employee_name'] ?? '')) ?>
+                      <span class="d-inline-flex align-items-center gap-2">
+                        <?php if (!empty($it['employee_photo'])): ?>
+                          <img class="zaco-avatar-sm rounded-circle border" alt="" src="<?= Http::e(Http::url('/employees/photo?id=' . (int)($it['employee_id'] ?? 0))) ?>" loading="lazy" />
+                        <?php else: ?>
+                          <?= Avatar::html((string)($it['employee_name'] ?? ''), (string)($it['employee_id'] ?? ($it['employee_name'] ?? '')), 'zaco-avatar-sm', 'border') ?>
+                        <?php endif; ?>
+                        <span><?= Http::e((string)($it['employee_name'] ?? '')) ?></span>
+                      </span>
                       <?php if (!empty($it['serial_number'])): ?> • <?= Http::e((string)$it['serial_number']) ?><?php endif; ?>
                     </div>
                     <div class="text-muted small"><?= Http::e((string)($it['date_assigned'] ?? '')) ?></div>
@@ -203,8 +211,27 @@ ob_start();
           <tbody>
             <?php foreach (($items ?? []) as $it): ?>
               <tr>
-                <td><?= Http::e((string)($it['org_name'] ?? '')) ?></td>
-                <td><?= Http::e((string)$it['employee_name']) ?></td>
+                <td>
+                  <?php $orgName = (string)($it['org_name'] ?? ''); ?>
+                  <?php if ($orgName !== ''): ?>
+                    <span class="d-inline-flex align-items-center gap-2">
+                      <?= Avatar::html($orgName, (string)($it['org_id'] ?? $orgName), 'zaco-avatar-xs', 'border') ?>
+                      <span><?= Http::e($orgName) ?></span>
+                    </span>
+                  <?php else: ?>
+                    <span class="text-muted">—</span>
+                  <?php endif; ?>
+                </td>
+                <td>
+                  <span class="d-inline-flex align-items-center gap-2">
+                    <?php if (!empty($it['employee_photo'])): ?>
+                      <img class="zaco-avatar-sm rounded-circle border" alt="" src="<?= Http::e(Http::url('/employees/photo?id=' . (int)($it['employee_id'] ?? 0))) ?>" loading="lazy" />
+                    <?php else: ?>
+                      <?= Avatar::html((string)($it['employee_name'] ?? ''), (string)($it['employee_id'] ?? ($it['employee_name'] ?? '')), 'zaco-avatar-sm', 'border') ?>
+                    <?php endif; ?>
+                    <span><?= Http::e((string)($it['employee_name'] ?? '')) ?></span>
+                  </span>
+                </td>
                 <td><?= Http::e((string)$it['item_name']) ?></td>
                 <td><?= Http::e((string)($it['serial_number'] ?? '')) ?></td>
                 <td><?= Http::e((string)$it['date_assigned']) ?></td>

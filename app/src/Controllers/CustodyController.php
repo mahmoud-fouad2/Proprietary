@@ -50,6 +50,9 @@ final class CustodyController extends BaseController
             $orgId = 0;
         }
 
+        $employeesTableExists = $this->hasTable($db, 'employees');
+        $employeesPhotoEnabled = $employeesTableExists && $this->hasColumn($db, 'employees', 'photo');
+
         $sortMap = [
             'id' => 'c.id',
             'employee' => 'c.employee_name',
@@ -93,9 +96,12 @@ final class CustodyController extends BaseController
         $offset = ($page - 1) * $perPage;
         $offset = max(0, $offset);
 
+        $empJoin = $employeesTableExists ? ' LEFT JOIN employees e ON e.id = c.employee_id' : '';
+        $empSelect = $employeesPhotoEnabled ? ', e.photo AS employee_photo' : '';
+
         $selectSql = $orgEnabled
-            ? 'SELECT c.*, o.name AS org_name FROM custody c LEFT JOIN organizations o ON o.id = c.org_id'
-            : 'SELECT c.* FROM custody c';
+            ? 'SELECT c.*, o.name AS org_name' . $empSelect . ' FROM custody c LEFT JOIN organizations o ON o.id = c.org_id' . $empJoin
+            : 'SELECT c.*' . $empSelect . ' FROM custody c' . $empJoin;
         $sql = $selectSql . ' WHERE ' . $where . ' ORDER BY ' . $orderBy . ' LIMIT ' . (int)$perPage . ' OFFSET ' . (int)$offset;
         $stmt = $db->prepare($sql);
         $stmt->execute($args);

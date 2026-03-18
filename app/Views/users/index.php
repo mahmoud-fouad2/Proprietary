@@ -5,6 +5,7 @@ use Zaco\Core\Http;
 use Zaco\Core\Flash;
 use Zaco\Core\Status;
 use Zaco\Core\I18n;
+use Zaco\Core\Avatar;
 use Zaco\Security\Csrf;
 
 // Initialize flash messages from URL params
@@ -85,7 +86,12 @@ ob_start();
 
           <?php foreach (($users ?? []) as $u): $isSelf = ((int)$u['id'] === $currentUserId); ?>
             <tr>
-              <td><?= htmlspecialchars((string)$u['name'], ENT_QUOTES, 'UTF-8') ?></td>
+              <td>
+                <span class="d-inline-flex align-items-center gap-2">
+                  <?= Avatar::html((string)($u['name'] ?? ''), (string)($u['id'] ?? ($u['email'] ?? $u['name'] ?? '')), 'zaco-avatar-sm', 'border') ?>
+                  <span><?= htmlspecialchars((string)$u['name'], ENT_QUOTES, 'UTF-8') ?></span>
+                </span>
+              </td>
               <td><?= htmlspecialchars((string)$u['email'], ENT_QUOTES, 'UTF-8') ?></td>
               <?php $roleRaw = (string)($u['role'] ?? ''); $roleLabel = in_array($roleRaw, ['admin','superadmin'], true) ? 'أدمن' : 'مستخدم'; ?>
               <td><?= htmlspecialchars($roleLabel, ENT_QUOTES, 'UTF-8') ?></td>

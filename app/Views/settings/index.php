@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use Zaco\Core\Http;
+use Zaco\Core\Avatar;
 
 $settingsRow = $settings ?? [];
 ob_start();
@@ -433,7 +434,12 @@ ob_start();
                       <?php $active = ((int)($o['is_active'] ?? 0) === 1); ?>
                       <tr>
                         <td class="text-center text-muted"><?= (int)($o['id'] ?? 0) ?></td>
-                        <td><?= Http::e((string)($o['name'] ?? '')) ?></td>
+                        <td>
+                          <span class="d-inline-flex align-items-center gap-2">
+                            <?= Avatar::html((string)($o['name'] ?? ''), (string)($o['id'] ?? ($o['name'] ?? '')), 'zaco-avatar-xs', 'border') ?>
+                            <span><?= Http::e((string)($o['name'] ?? '')) ?></span>
+                          </span>
+                        </td>
                         <td class="text-center">
                           <span class="badge <?= $active ? 'text-bg-success' : 'text-bg-secondary' ?>"><?= $active ? 'نشطة' : 'موقوفة' ?></span>
                         </td>
