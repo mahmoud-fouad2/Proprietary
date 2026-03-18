@@ -5,6 +5,7 @@ use Zaco\Core\Http;
 use Zaco\Core\Status;
 use Zaco\Core\Flash;
 use Zaco\Core\I18n;
+use Zaco\Core\Avatar;
 
 // Initialize flash messages from URL params
 Flash::fromUrl('employee');
@@ -144,7 +145,7 @@ ob_start();
                   <?php if (!empty($it['photo'])): ?>
                     <img class="zaco-avatar-sm rounded-circle" alt="" src="<?= Http::e(Http::url('/employees/photo?id=' . (int)$it['id'])) ?>" loading="lazy" />
                   <?php else: ?>
-                    <span class="zaco-avatar-sm rounded-circle bg-body-tertiary border d-inline-block"></span>
+                    <?= Avatar::html((string)($it['full_name'] ?? ''), (string)($it['id'] ?? ($it['employee_no'] ?? $it['full_name'] ?? '')), 'zaco-avatar-sm', 'border') ?>
                   <?php endif; ?>
                   <span><?= Http::e((string)$it['full_name']) ?></span>
                 </a>
